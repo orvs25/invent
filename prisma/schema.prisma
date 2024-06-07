@@ -1,0 +1,134 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt DateTime @default(now())
+  email     String   @unique
+  name      String?
+
+  @@map("user")
+}
+
+model Assets {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt DateTime @default(now())
+  model     String
+  status    String
+  serial    String
+  category  String
+
+  @@map("assets")
+}
+
+model Accessory {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt    DateTime @default(now())
+  name         String
+  category     String
+  status       String
+  modelNo      String
+  location     String
+  purchaseCost String
+
+  @@map("accessory")
+}
+
+model Component {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt    DateTime @default(now())
+  name         String
+  category     String
+  quantity     String
+  minQty       String
+  serial       String
+  company      String
+  location     String
+  orderNumber  String
+  purchaseDate String
+
+  @@map("component")
+}
+
+model Consumables {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt    DateTime @default(now())
+  name         String
+  category     String
+  status       String
+  manufacturer String
+  itemNumber   String
+  location     String
+  purchaseDate String
+  purchaseCost String
+  quantity     String
+
+  @@map("consumables")
+}
+
+model License {
+  id               String   @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt        DateTime @default(now())
+  softwareName     String
+  category         String
+  productKey       String
+  manufacturer     String
+  licensedto_name  String
+  licensedto_email String
+  purchaseDate     String
+  purchaseCost     String
+  expirationDate   String
+
+  @@map("license")
+}
+
+model Furniture {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt     DateTime @default(now())
+  furnitureName String
+  category      String
+  modelNo       String
+  manufacturer  String
+  location      String
+  purchaseDate  String
+  purchaseCost  String
+
+  @@map("furniture")
+}
+
+model Vehicle {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt    DateTime @default(now())
+  vehiclemodel String
+  category     String
+  platenumber  String
+  location     String
+  purchaseDate String
+  purchaseCost String
+
+  @@map("vehicle")
+}
+
+model Appliances {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt    DateTime @default(now())
+  name         String
+  category     String
+  location     String
+  purchaseDate String
+  purchaseCost String
+
+  @@map("appliances")
+}
